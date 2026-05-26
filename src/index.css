@@ -1,0 +1,186 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    scroll-behavior: smooth;
+  }
+
+  /* Tabular numbers for all numeric content */
+  .tabular-nums,
+  [class*="font-bold"],
+  [class*="font-mono"],
+  td, th {
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* Custom scrollbar for dark theme */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #334155;
+    border-radius: 3px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #475569;
+  }
+
+  /* Noise texture overlay — subtle grain for depth */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    pointer-events: none;
+    opacity: 0.015;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-repeat: repeat;
+    background-size: 256px 256px;
+  }
+}
+
+@layer components {
+  /* Gradient border card — use on hero/featured elements */
+  .card-gradient-border {
+    position: relative;
+    border-radius: 0.75rem;
+    background: rgba(15, 23, 42, 0.8);
+    backdrop-filter: blur(8px);
+  }
+  .card-gradient-border::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 0.75rem;
+    padding: 1px;
+    background: linear-gradient(135deg, rgba(59, 130, 246, 0.3), rgba(16, 185, 129, 0.1), rgba(59, 130, 246, 0.05));
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask-composite: exclude;
+    -webkit-mask-composite: xor;
+    pointer-events: none;
+  }
+
+  /* Animated gradient text for brand elements */
+  .text-gradient {
+    background: linear-gradient(135deg, #3b82f6, #10b981, #3b82f6);
+    background-size: 200% 200%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: gradient-shift 6s ease infinite;
+  }
+
+  @keyframes gradient-shift {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+  }
+
+  /* Stronger focus rings for keyboard navigation (WCAG 2.4.7) */
+  *:focus-visible {
+    outline: 2px solid rgba(59, 130, 246, 0.6);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+
+  /* Blur vignette at page edges */
+  .vignette::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 50;
+    background: radial-gradient(ellipse at center, transparent 50%, rgba(2, 6, 23, 0.4) 100%);
+  }
+
+  /* ─── ThreatOne-inspired editorial language ─────────────────────────── */
+  /* Used on the Threat Intel page; will roll to other pages incrementally. */
+
+  .eyebrow {
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    font-size: 10px;
+    color: #64748b;
+  }
+
+  /* Stop-gap: utility classes keep their names (used throughout Threat Intel
+   * page) but use Inter sans-serif to match the rest of the portal. Light
+   * weight + tight tracking preserves the "data as content" feel without
+   * the editorial serif. Revisit when doing a full portal visual pass. */
+  .num-serif {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    font-weight: 300;
+    letter-spacing: -0.03em;
+    font-variant-numeric: tabular-nums lining-nums;
+  }
+
+  .heading-serif {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    font-weight: 500;
+    letter-spacing: -0.02em;
+  }
+
+  .hairline {
+    background: linear-gradient(90deg, transparent 0%, #1e293b 12%, #334155 50%, #1e293b 88%, transparent 100%);
+    height: 1px;
+  }
+
+  .dot-field {
+    background-image: radial-gradient(circle at 6px 6px, rgba(148, 163, 184, 0.18) 1px, transparent 1.5px);
+    background-size: 22px 22px;
+  }
+
+  .pulse-card-bg {
+    background:
+      radial-gradient(900px 240px at 0% 0%, rgba(59, 130, 246, 0.08) 0%, transparent 60%),
+      radial-gradient(700px 180px at 100% 100%, rgba(168, 85, 247, 0.06) 0%, transparent 60%),
+      #0f172a;
+  }
+
+  .marquee-bg {
+    background: linear-gradient(180deg, #0b1220 0%, #0f172a 100%);
+  }
+
+  .glow-pulse {
+    animation: glow-pulse-anim 2.4s ease-in-out infinite;
+  }
+
+  @keyframes glow-pulse-anim {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.45); }
+    50% { box-shadow: 0 0 0 6px rgba(59, 130, 246, 0); }
+  }
+
+  /* ─── prose-drawer: typography for rendered briefing/pulse bodies ─── */
+  .prose-drawer { color: #cbd5e1; font-size: 15px; line-height: 1.7; }
+  .prose-drawer h1 { font-weight: 600; font-size: 24px; color: #fff; margin: 24px 0 14px; letter-spacing: -0.02em; }
+  .prose-drawer h2 { font-weight: 600; font-size: 20px; color: #fff; margin: 28px 0 12px; letter-spacing: -0.015em; }
+  .prose-drawer h3 { font-weight: 600; font-size: 17px; color: #e2e8f0; margin: 22px 0 10px; letter-spacing: -0.01em; }
+  .prose-drawer h4 { font-size: 15px; font-weight: 600; color: #e2e8f0; margin: 18px 0 8px; }
+  .prose-drawer p { margin: 12px 0; }
+  .prose-drawer strong { color: #f1f5f9; font-weight: 600; }
+  .prose-drawer em { color: #cbd5e1; font-style: italic; }
+  .prose-drawer a { color: #60a5fa; text-underline-offset: 2px; }
+  .prose-drawer a:hover { color: #93c5fd; text-decoration: underline; }
+  .prose-drawer ul, .prose-drawer ol { margin: 12px 0 12px 22px; }
+  .prose-drawer ul { list-style: disc; }
+  .prose-drawer ol { list-style: decimal; }
+  .prose-drawer li { margin: 6px 0; }
+  .prose-drawer code { background: #1e293b; color: #e2e8f0; padding: 1px 6px; border-radius: 4px; font-size: 13px; font-family: 'JetBrains Mono', ui-monospace, monospace; }
+  .prose-drawer pre { background: #0f172a; border: 1px solid #1e293b; border-radius: 8px; padding: 14px 16px; margin: 16px 0; overflow-x: auto; font-size: 13px; line-height: 1.55; }
+  .prose-drawer pre code { background: transparent; padding: 0; color: #cbd5e1; }
+  .prose-drawer blockquote { border-left: 3px solid #1e40af; padding: 4px 14px; margin: 16px 0; color: #cbd5e1; background: rgba(30, 64, 175, 0.06); border-radius: 0 6px 6px 0; }
+  .prose-drawer hr { border: none; border-top: 1px solid #1e293b; margin: 24px 0; }
+  .prose-drawer table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 13px; }
+  .prose-drawer th { text-align: left; padding: 8px 10px; background: #0f172a; border: 1px solid #1e293b; font-weight: 600; color: #f1f5f9; }
+  .prose-drawer td { padding: 8px 10px; border: 1px solid #1e293b; color: #cbd5e1; }
+  .prose-drawer h2:first-child, .prose-drawer h3:first-child { margin-top: 0; }
+}

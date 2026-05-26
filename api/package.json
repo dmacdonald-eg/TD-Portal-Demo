@@ -1,0 +1,7 @@
+{
+  "name": "td-portal-demo-api",
+  "version": "1.0.0",
+  "description": "Auth gate functions for the ThreatDefender Client Portal demo.",
+  "main": "index.js",
+  "dependencies": {}
+}
