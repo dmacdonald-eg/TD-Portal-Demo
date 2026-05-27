@@ -29,7 +29,7 @@ export default function DashboardView({ onIncidentClick }) {
             <Ticket className="w-5 h-5 text-blue-400" />
           </div>
           <div className="flex-1">
-            <div className="text-sm font-semibold text-blue-300">11 Open Tickets in ConnectWise</div>
+            <div className="text-sm font-semibold text-blue-300">11 Open Incident Tickets</div>
             <div className="text-xs text-slate-400">4 awaiting client response · 7 in progress</div>
           </div>
           <button className="px-3 py-1.5 text-xs font-semibold text-blue-300 border border-blue-500/40 bg-blue-500/10 rounded hover:bg-blue-500/20">

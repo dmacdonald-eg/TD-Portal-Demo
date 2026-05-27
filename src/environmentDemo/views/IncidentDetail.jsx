@@ -290,7 +290,7 @@ export default function IncidentDetailView({ onBack, onTourTargetClick }) {
                 { label: 'Analyst',          value: 'mike.k' },
                 { label: 'Alert Count',      value: '1' },
                 { label: 'Entities',         value: '4' },
-                { label: 'CW Ticket',        value: '#58472', valueClass: 'text-blue-400 font-mono' },
+                { label: 'Ticket',           value: '#58472', valueClass: 'text-blue-400 font-mono' },
                 { label: 'Closed',           value: '—' },
               ].map((d) => (
                 <div key={d.label}>
@@ -388,7 +388,7 @@ export default function IncidentDetailView({ onBack, onTourTargetClick }) {
           <div className="space-y-3">
             {[
               { time: '14:08 UTC', event: 'Incident Created',          desc: 'Sentinel correlated 1 alert from MDCA',         icon: AlertTriangle, color: 'text-rose-400' },
-              { time: '14:09 UTC', event: 'ThreatDefender Enrichment', desc: 'Sara summary generated, CW ticket #58472 opened', icon: Sparkles,       color: 'text-blue-400' },
+              { time: '14:09 UTC', event: 'ThreatDefender Enrichment', desc: 'Sara summary generated, ticket #58472 opened', icon: Sparkles,       color: 'text-blue-400' },
               { time: '14:32 UTC', event: 'Analyst Claimed',           desc: 'mike.k acknowledged the incident',              icon: User,           color: 'text-cyan-400' },
               { time: '14:35 UTC', event: 'SOAR Action',               desc: 'Session revocation playbook executed',          icon: Shield,         color: 'text-emerald-400' },
               { time: '14:38 UTC', event: 'Investigation Updated',     desc: 'Containment notes added to investigation panel', icon: FileSearch,    color: 'text-violet-400' },

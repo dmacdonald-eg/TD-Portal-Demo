@@ -57,7 +57,7 @@ export default function TicketDetailView({ onBack }) {
             <h3 className="text-sm font-semibold text-slate-200 mb-3">Add a discussion note</h3>
             <textarea
               disabled
-              placeholder="Your reply syncs straight to ConnectWise and notifies the assigned analyst..."
+              placeholder="Your reply syncs straight to our ticketing system and notifies the assigned analyst..."
               className="w-full h-24 px-3 py-2 bg-slate-950 border border-slate-700 rounded-md text-xs text-slate-300 outline-none resize-none"
             />
             <div className="flex items-center justify-between mt-3">
@@ -78,7 +78,7 @@ export default function TicketDetailView({ onBack }) {
                 { label: 'Status',             value: 'In Progress', valueClass: 'text-blue-300' },
                 { label: 'SLA',                value: '2h 38m remaining', valueClass: 'text-emerald-400' },
                 { label: 'Owner',              value: 'mike.k', valueClass: 'text-slate-300 font-mono' },
-                { label: 'Board',              value: 'ETC-ThreatHunter' },
+                { label: 'Queue',              value: 'Security Operations' },
                 { label: 'Type',               value: 'Incident' },
                 { label: 'Created',            value: '2h ago · 14:08 UTC' },
                 { label: 'Last Updated',       value: '32m ago' },

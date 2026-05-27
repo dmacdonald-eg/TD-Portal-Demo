@@ -6,7 +6,7 @@ import { TICKETS } from '../data';
 export default function TicketsView({ onTicketClick }) {
   return (
     <div>
-      <ViewHeader title="Tickets" subtitle="ConnectWise · ETC-ThreatHunter board" />
+      <ViewHeader title="Tickets" subtitle="Security incident tickets tracked by our analysts" />
       <Card className="p-3 mb-6">
         <div className="flex items-center gap-2">
           <div className="flex items-center gap-2 px-3 py-1.5 rounded-md border border-slate-700 bg-slate-950 flex-1">
