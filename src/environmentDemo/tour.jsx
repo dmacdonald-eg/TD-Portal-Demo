@@ -24,8 +24,8 @@ export const STEPS = [
   },
   {
     id: 'tickets-banner', view: 'dashboard', target: 'tickets-banner', placement: 'bottom',
-    title: 'Open ConnectWise tickets',
-    body: 'Live ticket count from ConnectWise PSA — separates "in progress" from "awaiting client response" so you know what needs your attention.',
+    title: 'Open Incident Tickets',
+    body: 'The live ticket count for open security incidents our analysts are tracking — separates "in progress" from "awaiting client response" so you know what needs your attention.',
   },
   {
     id: 'kpi-grid', view: 'dashboard', target: 'kpi-grid', placement: 'bottom',
@@ -68,7 +68,7 @@ export const STEPS = [
   {
     id: 'incidents-table', view: 'incidents-list', target: 'incidents-table', placement: 'top',
     title: 'Full incident queue',
-    body: '9 columns including owner assignment, alert count, CW ticket cross-reference, and classification — all sortable.',
+    body: '9 columns including owner assignment, alert count, support ticket cross-reference, and classification — all sortable.',
   },
   {
     id: 'click-incident-row', view: 'incidents-list', target: 'incident-row-2847', placement: 'bottom',
@@ -96,7 +96,7 @@ export const STEPS = [
   {
     id: 'details-grid', view: 'incident-detail', target: 'details-grid', placement: 'top',
     title: 'Incident metadata',
-    body: 'Timestamps, analyst assignment, alert count, and a cross-link to the matching ConnectWise ticket.',
+    body: 'Timestamps, analyst assignment, alert count, and a cross-link to the matching support ticket.',
   },
   {
     id: 'mitre', view: 'incident-detail', target: 'mitre', placement: 'top',
@@ -104,7 +104,7 @@ export const STEPS = [
     body: 'Tactics and techniques auto-extracted from the underlying alerts. See what attacker behavior was detected.',
   },
   {
-    id: 'click-alerts-tab', view: 'incident-detail', target: 'detail-tab-alerts', placement: 'bottom',
+    id: 'click-alerts-tab', view: 'incident-detail', target: 'detail-tab-alerts', placement: 'right',
     title: 'Drill into the underlying alerts',
     body: 'Click the Alerts tab to see the raw alert data that fed this incident.',
     advance: 'click',
@@ -116,19 +116,19 @@ export const STEPS = [
     advance: 'click',
   },
   {
-    id: 'click-timeline-tab', view: 'incident-detail', target: 'detail-tab-timeline', placement: 'bottom',
+    id: 'click-timeline-tab', view: 'incident-detail', target: 'detail-tab-timeline', placement: 'right',
     title: 'Investigation timeline',
     body: 'Click the Timeline tab to see milestones: when the incident fired, who claimed it, what SOAR actions ran.',
     advance: 'click',
   },
   {
-    id: 'click-entities-tab', view: 'incident-detail', target: 'detail-tab-entities', placement: 'bottom',
+    id: 'click-entities-tab', view: 'incident-detail', target: 'detail-tab-entities', placement: 'right',
     title: 'Entity correlation',
     body: 'Click Entities to see all accounts, IPs, hosts, and sessions involved — grouped by type.',
     advance: 'click',
   },
   {
-    id: 'click-comments-tab', view: 'incident-detail', target: 'detail-tab-comments', placement: 'bottom',
+    id: 'click-comments-tab', view: 'incident-detail', target: 'detail-tab-comments', placement: 'right',
     title: 'Analyst comments',
     body: 'Click Comments to see the SOC team\'s discussion during triage. Full audit trail of the investigation.',
     advance: 'click',
@@ -137,14 +137,14 @@ export const STEPS = [
   // ── TICKETS ─────────────────────────────────────────────────────────────
   {
     id: 'go-tickets', view: 'incident-detail', target: 'nav-tickets', placement: 'right',
-    title: 'ConnectWise tickets',
-    body: 'Click "Tickets" in the sidebar to see all open and recent CW tickets.',
+    title: 'Support tickets',
+    body: 'Click "Tickets" in the sidebar to see all open and recent support tickets.',
     advance: 'click',
   },
   {
     id: 'tickets-table', view: 'tickets', target: 'tickets-table', placement: 'top',
-    title: 'CW ticket queue, scoped to your company',
-    body: 'Synced from ConnectWise PSA in real time. Only your company\'s open tickets shown — never other clients\'.',
+    title: 'Ticket queue, scoped to your company',
+    body: 'Synced from our ticketing system in real time. Only your company\'s open tickets shown — never other clients\'.',
   },
   {
     id: 'click-ticket-row', view: 'tickets', target: 'ticket-row-58472', placement: 'right',
@@ -160,12 +160,12 @@ export const STEPS = [
   {
     id: 'ticket-notes', view: 'ticket-detail', target: 'ticket-notes', placement: 'top',
     title: 'Discussion notes thread',
-    body: 'Two-way conversation between your team and the SOC. Clients see discussion notes only — never internal/resolution notes.',
+    body: 'Two-way conversation between your team and the SOC — keep the discussion in one place, in context with the ticket.',
   },
   {
     id: 'ticket-post', view: 'ticket-detail', target: 'ticket-post', placement: 'top',
     title: 'Reply to the SOC',
-    body: 'Post a discussion note here. It syncs straight to ConnectWise and notifies the assigned analyst.',
+    body: 'Post a discussion note here. It syncs straight to our ticketing system and notifies the assigned analyst.',
   },
 
   // ── SENTINEL HEALTH ─────────────────────────────────────────────────────
@@ -181,25 +181,25 @@ export const STEPS = [
     body: 'Unified status banner — green/yellow/red — with a "Needs Attention" section if anything is degraded.',
   },
   {
-    id: 'click-ingestion-tab', view: 'health', target: 'health-tab-ingestion', placement: 'bottom',
+    id: 'click-ingestion-tab', view: 'health', target: 'health-tab-ingestion', placement: 'right',
     title: 'Data ingestion deep-dive',
     body: 'Click the Ingestion tab to see daily volume per table and EPS trends.',
     advance: 'click',
   },
   {
-    id: 'click-freshness-tab', view: 'health', target: 'health-tab-freshness', placement: 'bottom',
+    id: 'click-freshness-tab', view: 'health', target: 'health-tab-freshness', placement: 'right',
     title: 'Per-table freshness',
     body: 'Click the Freshness tab — batch-aware thresholds catch stale data before it hides an attack.',
     advance: 'click',
   },
   {
-    id: 'click-connectors-tab', view: 'health', target: 'health-tab-connectors', placement: 'bottom',
+    id: 'click-connectors-tab', view: 'health', target: 'health-tab-connectors', placement: 'right',
     title: 'Connector status',
     body: 'Click the Connectors tab to see per-connector success rates and any failed events.',
     advance: 'click',
   },
   {
-    id: 'click-rules-tab', view: 'health', target: 'health-tab-rules', placement: 'bottom',
+    id: 'click-rules-tab', view: 'health', target: 'health-tab-rules', placement: 'right',
     title: 'Analytic rule execution',
     body: 'Click Rule Health to see which rules are succeeding, which are throwing errors, and where to look first.',
     advance: 'click',
@@ -281,7 +281,7 @@ export const STEPS = [
   {
     id: 'threatintel-pulse', view: 'threat-intel', target: 'threatintel-pulse', placement: 'bottom',
     title: 'The Pulse — daily analyst snapshot',
-    body: 'Hand-written narrative each morning by ThreatOne analysts. The "what matters today" cut, not just raw indicator volume.',
+    body: 'A fresh narrative each morning from ThreatOne. The "what matters today" cut, not just raw indicator volume.',
   },
   {
     id: 'threatintel-feed', view: 'threat-intel', target: 'threatintel-feed', placement: 'top',
