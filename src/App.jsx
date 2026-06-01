@@ -19,20 +19,36 @@ function Splash() {
 
 export default function App() {
   const [status, setStatus] = useState('checking'); // checking | locked | unlocked
+  // Scope for the logged-in user — null until /api/session resolves. `steps`
+  // may be the string "all" (full tour) or an array of step ids (curated).
+  const [scope, setScope] = useState({ modules: null, steps: 'all' });
 
-  useEffect(() => {
-    fetch('/api/session', { credentials: 'same-origin' })
+  const loadSession = () => {
+    return fetch('/api/session', { credentials: 'same-origin' })
       .then((r) => (r.ok ? r.json() : { authenticated: false }))
-      .then((d) => setStatus(d.authenticated ? 'unlocked' : 'locked'))
+      .then((d) => {
+        if (d.authenticated) {
+          setScope({ modules: d.modules || null, steps: d.steps ?? 'all' });
+          setStatus('unlocked');
+        } else {
+          setStatus('locked');
+        }
+      })
       .catch(() => setStatus('locked'));
-  }, []);
+  };
+
+  useEffect(() => { loadSession(); }, []);
 
   if (status === 'checking') return <Splash />;
-  if (status === 'locked') return <LoginGate onSuccess={() => setStatus('unlocked')} />;
+  if (status === 'locked') return <LoginGate onSuccess={loadSession} />;
 
   return (
     <Suspense fallback={<Splash />}>
-      <EnvironmentDemo onExit={() => window.location.reload()} />
+      <EnvironmentDemo
+        onExit={() => window.location.reload()}
+        modules={scope.modules}
+        steps={scope.steps}
+      />
     </Suspense>
   );
 }

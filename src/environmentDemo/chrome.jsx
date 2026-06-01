@@ -9,15 +9,15 @@ import {
    left sidebar (Sidebar.jsx). Standalone — no real navigation, just visual. */
 
 export const NAV_ITEMS = [
-  { id: 'dashboard',      label: 'Dashboard',       icon: LayoutDashboard, tour: 'nav-dashboard' },
-  { id: 'incidents-list', label: 'Incidents',       icon: AlertTriangle,   tour: 'nav-incidents' },
-  { id: 'tickets',        label: 'Tickets',         icon: Ticket,          tour: 'nav-tickets' },
-  { id: 'reports',        label: 'Reports',         icon: FileText,        tour: 'nav-reports' },
-  { id: 'health',         label: 'Sentinel Health', icon: HeartPulse,      tour: 'nav-health' },
-  { id: 'mail',           label: 'Mail Hygiene',    icon: Mail,            tour: 'nav-mail' },
-  { id: 'identity',       label: 'Identity',        icon: Fingerprint,     tour: 'nav-identity' },
-  { id: 'threat-intel',   label: 'Threat Intel',    icon: Globe,           tour: 'nav-threatintel' },
-  { id: 'tools',          label: 'Tools',           icon: Wrench,          tour: 'nav-tools' },
+  { id: 'dashboard',      module: 'dashboard',    label: 'Dashboard',       icon: LayoutDashboard, tour: 'nav-dashboard' },
+  { id: 'incidents-list', module: 'incidents',    label: 'Incidents',       icon: AlertTriangle,   tour: 'nav-incidents' },
+  { id: 'tickets',        module: 'tickets',      label: 'Tickets',         icon: Ticket,          tour: 'nav-tickets' },
+  { id: 'reports',        module: 'reports',      label: 'Reports',         icon: FileText,        tour: 'nav-reports' },
+  { id: 'health',         module: 'health',       label: 'Sentinel Health', icon: HeartPulse,      tour: 'nav-health' },
+  { id: 'mail',           module: 'mail',         label: 'Mail Hygiene',    icon: Mail,            tour: 'nav-mail' },
+  { id: 'identity',       module: 'identity',     label: 'Identity',        icon: Fingerprint,     tour: 'nav-identity' },
+  { id: 'threat-intel',   module: 'threat-intel', label: 'Threat Intel',    icon: Globe,           tour: 'nav-threatintel' },
+  { id: 'tools',          module: 'tools',        label: 'Tools',           icon: Wrench,          tour: 'nav-tools' },
 ];
 
 export const SIDEBAR_COLLAPSED = 64;
@@ -80,8 +80,10 @@ export function FakeHeader() {
   );
 }
 
-export function FakeSidebar({ activeView, onNavClick, collapsed, onToggle }) {
+export function FakeSidebar({ activeView, onNavClick, collapsed, onToggle, modules }) {
   const width = collapsed ? SIDEBAR_COLLAPSED : SIDEBAR_EXPANDED;
+  // If no module list is supplied, show everything (backwards compatible).
+  const visibleNav = modules ? NAV_ITEMS.filter((item) => modules.includes(item.module)) : NAV_ITEMS;
   return (
     <motion.aside
       initial={false}
@@ -101,7 +103,7 @@ export function FakeSidebar({ activeView, onNavClick, collapsed, onToggle }) {
       </div>
 
       <nav className={`flex-1 overflow-y-auto overflow-x-hidden ${collapsed ? 'px-2' : 'px-3'} space-y-1`}>
-        {NAV_ITEMS.map((item) => {
+        {visibleNav.map((item) => {
           const Icon = item.icon;
           const isActive = activeView === item.id ||
             (item.id === 'incidents-list' && (activeView === 'incident-detail')) ||

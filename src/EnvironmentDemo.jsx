@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, useCallback } from 'react';
+import React, { useState, useEffect, useRef, useCallback, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Sparkles, X, RotateCcw } from 'lucide-react';
 
@@ -35,7 +35,33 @@ const VIEW_COMPONENTS = {
   tools:             ToolsView,
 };
 
-export default function EnvironmentDemo({ onExit }) {
+const ALL_MODULES = ['dashboard','incidents','tickets','health','mail','identity','threat-intel','reports','tools'];
+
+export default function EnvironmentDemo({ onExit, modules, steps: stepWhitelist }) {
+  // Filter the tour by module membership OR explicit step-ID whitelist, then
+  // rewrite any go-* (sidebar nav) step's view to whatever view the previous
+  // step left us on — keeps the "click X in the sidebar" prompt anchored to
+  // a page that's actually being shown when sections are skipped.
+  const tourSteps = useMemo(() => {
+    const effectiveModules = modules || ALL_MODULES;
+    const useWhitelist = Array.isArray(stepWhitelist);
+    const allow = (s) => {
+      if (useWhitelist) return stepWhitelist.includes(s.id);
+      return !s.module || effectiveModules.includes(s.module);
+    };
+    const filtered = STEPS.filter(allow);
+    let lastView = null;
+    return filtered.map((s) => {
+      const isGo = typeof s.id === 'string' && s.id.startsWith('go-');
+      const isComplete = s.id === 'complete';
+      if ((isGo || isComplete) && lastView && s.view !== lastView) {
+        return { ...s, view: lastView };
+      }
+      if (s.view) lastView = s.view;
+      return s;
+    });
+  }, [modules, stepWhitelist]);
+
   const [stepIdx, setStepIdx] = useState(0);
   const [tourActive, setTourActive] = useState(true);
   const [currentView, setCurrentView] = useState('dashboard');
@@ -43,7 +69,7 @@ export default function EnvironmentDemo({ onExit }) {
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
   const mainRef = useRef(null);
 
-  const step = STEPS[stepIdx];
+  const step = tourSteps[stepIdx];
 
   // Sync the view to whatever the current step says
   useEffect(() => {
@@ -105,7 +131,7 @@ export default function EnvironmentDemo({ onExit }) {
     };
   }, [step]);
 
-  const handleNext    = useCallback(() => setStepIdx((i) => Math.min(i + 1, STEPS.length - 1)), []);
+  const handleNext    = useCallback(() => setStepIdx((i) => Math.min(i + 1, tourSteps.length - 1)), [tourSteps.length]);
   const handlePrev    = useCallback(() => setStepIdx((i) => Math.max(i - 1, 0)), []);
   const handleSkip    = useCallback(() => setTourActive(false), []);
   const handleRestart = useCallback(() => { setStepIdx(0); setTourActive(true); setCurrentView('dashboard'); }, []);
@@ -174,6 +200,7 @@ export default function EnvironmentDemo({ onExit }) {
           onNavClick={handleNavClick}
           collapsed={sidebarCollapsed}
           onToggle={() => setSidebarCollapsed((c) => !c)}
+          modules={modules}
         />
 
         <main ref={mainRef} className="flex-1 overflow-y-auto overflow-x-hidden">
@@ -222,7 +249,7 @@ export default function EnvironmentDemo({ onExit }) {
               key={step.id}
               step={step}
               stepIdx={stepIdx}
-              total={STEPS.length}
+              total={tourSteps.length}
               onNext={handleNext}
               onPrev={handlePrev}
               onSkip={handleSkip}
