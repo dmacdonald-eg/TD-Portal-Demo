@@ -276,14 +276,14 @@ export const STEPS = [
   // ── THREAT INTEL ────────────────────────────────────────────────────────
   {
     id: 'go-threatintel', module: 'threat-intel', view: 'identity', target: 'nav-threatintel', placement: 'right',
-    title: 'Threat intelligence, powered by ThreatDefender',
+    title: 'Threat intelligence, powered by ThreatOne',
     body: 'Click "Threat Intel" in the sidebar to see global IOCs cross-referenced against your tenant.',
     advance: 'click',
   },
   {
     id: 'threatintel-pulse', module: 'threat-intel', view: 'threat-intel', target: 'threatintel-pulse', placement: 'bottom',
     title: 'The Pulse — daily analyst snapshot',
-    body: 'A fresh narrative each morning from ThreatDefender. The "what matters today" cut, not just raw indicator volume.',
+    body: 'A fresh narrative each morning from ThreatOne. The "what matters today" cut, not just raw indicator volume.',
   },
   {
     id: 'threatintel-feed', module: 'threat-intel', view: 'threat-intel', target: 'threatintel-feed', placement: 'top',
@@ -293,7 +293,7 @@ export const STEPS = [
   {
     id: 'threatintel-briefings', module: 'threat-intel', view: 'threat-intel', target: 'threatintel-briefings', placement: 'top',
     title: 'Briefings, field notes, and vuln watches',
-    body: 'ThreatDefender analyst write-ups with detection logic, KQL hunts, and MITRE technique mappings — published as new campaigns and CVEs emerge.',
+    body: 'ThreatOne analyst write-ups with detection logic, KQL hunts, and MITRE technique mappings — published as new campaigns and CVEs emerge.',
   },
   {
     id: 'threatintel-vulns', module: 'threat-intel', view: 'threat-intel', target: 'threatintel-vulns', placement: 'left',
