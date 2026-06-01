@@ -39,13 +39,28 @@ export default function App() {
 
   useEffect(() => { loadSession(); }, []);
 
+  // Exit / Close from inside the demo: clear the session server-side, then
+  // drop back to the login screen. We don't reload — that loses scroll state
+  // and the brief "checking" flash; resetting React state is enough.
+  const handleLogout = async () => {
+    try {
+      await fetch('/api/logout', { method: 'POST', credentials: 'same-origin' });
+    } catch {
+      // Best-effort: even if the network call fails, fall through so the user
+      // still sees the login screen. Worst case the cookie still expires on
+      // its own 8-hour TTL.
+    }
+    setScope({ modules: null, steps: 'all' });
+    setStatus('locked');
+  };
+
   if (status === 'checking') return <Splash />;
   if (status === 'locked') return <LoginGate onSuccess={loadSession} />;
 
   return (
     <Suspense fallback={<Splash />}>
       <EnvironmentDemo
-        onExit={() => window.location.reload()}
+        onExit={handleLogout}
         modules={scope.modules}
         steps={scope.steps}
       />

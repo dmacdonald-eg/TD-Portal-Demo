@@ -53,6 +53,12 @@ function sessionCookie(token) {
   return `${COOKIE_NAME}=${token}; HttpOnly; Secure; SameSite=Strict; Path=/; Max-Age=${TTL_SECONDS}`;
 }
 
+// Set-Cookie header value that expires the session cookie immediately.
+// Used by /api/logout so the browser drops the cookie on the response.
+function clearSessionCookie() {
+  return `${COOKIE_NAME}=; HttpOnly; Secure; SameSite=Strict; Path=/; Max-Age=0`;
+}
+
 // Parse the DEMO_USERS app setting (JSON array). Returns null if missing or
 // malformed so callers can fall back to the legacy single-user envs.
 function getDemoUsers() {
@@ -106,6 +112,7 @@ module.exports = {
   verifyToken,
   readCookie,
   sessionCookie,
+  clearSessionCookie,
   getDemoUsers,
   findUserSafe,
   scopeForUsername,
