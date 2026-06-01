@@ -44,12 +44,9 @@ export default function LoginGate({ onSuccess }) {
         transition={{ duration: 0.4 }}
         className="relative w-full max-w-sm"
       >
-        <div className="flex items-center gap-2 mb-6 justify-center">
-          <img src="/ThreatDefender.png" alt="ThreatDefender" className="w-9 h-9 rounded-lg" />
-          <div className="text-left">
-            <div className="text-sm font-semibold text-white leading-tight">ThreatDefender</div>
-            <div className="text-[11px] text-slate-500 leading-tight">Client Portal — Demo</div>
-          </div>
+        <div className="flex flex-col items-center gap-2 mb-6">
+          <img src="/ThreatDefender.png" alt="ThreatDefender" className="h-16 w-auto" />
+          <div className="text-[11px] text-slate-500 tracking-wider uppercase">Client Portal — Demo</div>
         </div>
 
         <div className="rounded-2xl border border-slate-800 bg-gradient-to-br from-slate-900 to-slate-950 p-7 shadow-2xl">
