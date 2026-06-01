@@ -276,24 +276,24 @@ export const STEPS = [
   // ── THREAT INTEL ────────────────────────────────────────────────────────
   {
     id: 'go-threatintel', module: 'threat-intel', view: 'identity', target: 'nav-threatintel', placement: 'right',
-    title: 'Threat intelligence, powered by ThreatOne',
+    title: 'Threat intelligence, powered by ThreatDefender',
     body: 'Click "Threat Intel" in the sidebar to see global IOCs cross-referenced against your tenant.',
     advance: 'click',
   },
   {
     id: 'threatintel-pulse', module: 'threat-intel', view: 'threat-intel', target: 'threatintel-pulse', placement: 'bottom',
     title: 'The Pulse — daily analyst snapshot',
-    body: 'A fresh narrative each morning from ThreatOne. The "what matters today" cut, not just raw indicator volume.',
+    body: 'A fresh narrative each morning from ThreatDefender. The "what matters today" cut, not just raw indicator volume.',
   },
   {
     id: 'threatintel-feed', module: 'threat-intel', view: 'threat-intel', target: 'threatintel-feed', placement: 'top',
     title: 'Live IOC feed cross-referenced to your tenant',
-    body: 'Domains, IPs, hashes, URLs, CVEs — ingested from 18 sources via STIX/TAXII. The colored left border and "In your env" chip mark indicators ThreatOne has already seen in your sign-in, device, file, or email events.',
+    body: 'Domains, IPs, hashes, URLs, CVEs — ingested from 18 sources via STIX/TAXII. The colored left border and "In your env" chip mark indicators ThreatDefender has already seen in your sign-in, device, file, or email events.',
   },
   {
     id: 'threatintel-briefings', module: 'threat-intel', view: 'threat-intel', target: 'threatintel-briefings', placement: 'top',
     title: 'Briefings, field notes, and vuln watches',
-    body: 'ThreatOne analyst write-ups with detection logic, KQL hunts, and MITRE technique mappings — published as new campaigns and CVEs emerge.',
+    body: 'ThreatDefender analyst write-ups with detection logic, KQL hunts, and MITRE technique mappings — published as new campaigns and CVEs emerge.',
   },
   {
     id: 'threatintel-vulns', module: 'threat-intel', view: 'threat-intel', target: 'threatintel-vulns', placement: 'left',

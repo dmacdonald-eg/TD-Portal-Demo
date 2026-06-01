@@ -1,6 +1,6 @@
 import React from 'react';
 
-/* Demo recreation of the real Threat Intelligence page (the ThreatOne
+/* Demo recreation of the real Threat Intelligence page (the ThreatDefender
    integration). Synthetic data — no API calls. Mirrors layout of
    src/components/threatfeed/ThreatFeedPage.jsx so SAs can demo it. */
 
@@ -94,7 +94,7 @@ export default function ThreatIntelView() {
         <div>
           <div className="eyebrow mb-2 flex items-center gap-2">
             <span className="w-1.5 h-1.5 rounded-full bg-blue-500 glow-pulse" />
-            <span>Powered by ThreatOne · Live</span>
+            <span>Powered by ThreatDefender · Live</span>
           </div>
           <h1 className="heading-serif text-4xl text-white">Threat Intelligence</h1>
           <p className="text-slate-400 text-sm mt-1 max-w-xl">
@@ -137,7 +137,7 @@ export default function ThreatIntelView() {
         <div className="col-span-12 xl:col-span-7 rounded-2xl p-8 relative overflow-hidden pulse-card-bg border border-slate-800">
           <div className="absolute inset-0 dot-field opacity-30 pointer-events-none" />
           <div className="relative">
-            <div className="eyebrow mb-4">Today on ThreatOne · The Pulse</div>
+            <div className="eyebrow mb-4">Today on ThreatDefender · The Pulse</div>
             <p className="heading-serif text-2xl leading-snug text-slate-100 max-w-2xl">
               AiTM kits are the story of the week — three campaigns observed targeting M365 admins,
               all using reverse-proxy infrastructure to harvest session tokens after MFA. Conditional
@@ -264,7 +264,7 @@ export default function ThreatIntelView() {
         <div data-tour="threatintel-briefings" className="col-span-12 xl:col-span-8">
           <div className="flex items-end justify-between mb-4">
             <div>
-              <div className="eyebrow mb-2">From ThreatOne · Briefings</div>
+              <div className="eyebrow mb-2">From ThreatDefender · Briefings</div>
               <h2 className="heading-serif text-2xl text-white">Recent threat briefings</h2>
             </div>
             <span className="text-xs text-slate-400">All briefings →</span>
@@ -324,7 +324,7 @@ export default function ThreatIntelView() {
       <div className="hairline" />
       <div className="flex items-center justify-between text-xs text-slate-500 pb-4">
         <div>
-          Powered by <span className="text-slate-300">ThreatOne</span> · Cross-reference uses sign-in,
+          Powered by <span className="text-slate-300">ThreatDefender</span> · Cross-reference uses sign-in,
           device-network, file, and email events from your tenant (last 30d).
         </div>
         <div className="flex items-center gap-4">
